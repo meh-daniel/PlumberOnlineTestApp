@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph_main"
     app:startDestination="@id/mainFragment">
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="plumber.online.test.ru.presentation.screens.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="plumber.online.test.ru.presentation.screens.map.MapFragment"
+        android:label="map_fragment"
+        tools:layout="@layout/map_fragment" />
 </navigation>

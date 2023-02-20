@@ -19,7 +19,6 @@ import plumber.online.test.ru.presentation.base.BaseFragment
 class MapFragment: BaseFragment<MapViewModel, MapFragmentBinding>(R.layout.map_fragment), InputListener {
 
     private lateinit var mapView: MapView
-    private val mapAPI = "66dfa1d3-ba90-4c58-ba0c-d26629b56a76"
     private var userInput: Point = Point(0.0, 0.0)
     override val viewModel: MapViewModel by viewModels()
 
@@ -27,12 +26,9 @@ class MapFragment: BaseFragment<MapViewModel, MapFragmentBinding>(R.layout.map_f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MapKitFactory.setApiKey(mapAPI)
-        MapKitFactory.initialize(this@MapFragment.requireContext())
     }
 
     override fun initialize() {
-
         mapView = binding.mapView
         val mapKit = MapKitFactory.getInstance()
         mapKit.resetLocationManagerToDefault()

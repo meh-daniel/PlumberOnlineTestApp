@@ -1,24 +1,24 @@
 package plumber.online.test.ru.data.sw
 
 import androidx.room.*
-import plumber.online.test.ru.data.sw.model.LocationSW
+import plumber.online.test.ru.data.sw.model.CoordinatesSW
 
 @Dao
 interface MapDao {
 
     @Insert
-    suspend fun insertLocation(location: LocationSW)
+    suspend fun insertLocation(location: CoordinatesSW)
 
-    @Query("DELETE FROM ${LocationSW.TABLE_NAME}")
+    @Query("DELETE FROM ${CoordinatesSW.TABLE_NAME}")
     suspend fun deleteCurrentMap()
 
-    @Query("SELECT * FROM ${LocationSW.TABLE_NAME}")
-    suspend fun getCurrentLocation() : LocationSW
+    @Query("SELECT * FROM ${CoordinatesSW.TABLE_NAME}")
+    suspend fun getCurrentLocation() : CoordinatesSW
 
     @Transaction
-    suspend fun updateCurrentLocation(location: LocationSW) {
+    suspend fun updateCurrentLocation(coordinates: CoordinatesSW) {
         deleteCurrentMap()
-        insertLocation(location)
+        insertLocation(coordinates)
     }
 
 }

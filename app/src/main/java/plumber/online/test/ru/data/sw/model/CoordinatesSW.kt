@@ -5,13 +5,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = LocationSW.TABLE_NAME
+    tableName = CoordinatesSW.TABLE_NAME
 )
-data class LocationSW(
+data class CoordinatesSW(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long = 0,
-    val address: String,
     val lat: Double,
     val lon: Double,
 ) {

@@ -4,19 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import plumber.online.test.ru.data.sw.model.LocationSW
+import plumber.online.test.ru.data.sw.model.CoordinatesSW
 
 @Database(
     entities = arrayOf(
-        LocationSW::class
+        CoordinatesSW::class
     ),
     version = MapDataBase.DB_VERSION,
     exportSchema = false,
 )
 abstract class MapDataBase: RoomDatabase() {
     companion object {
-        const val DB_VERSION = 1
-        private const val DB_NAME = "map.db"
+        const val DB_VERSION = 2
+        private const val DB_NAME = "coordinates.db"
 
         @Volatile private var instance : MapDataBase? = null
 

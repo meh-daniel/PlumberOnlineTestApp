@@ -1,11 +1,11 @@
 package plumber.online.test.ru.domain
 
-import plumber.online.test.ru.domain.model.Location
+import plumber.online.test.ru.domain.model.Coordinates
 
 interface MapRepository {
 
-    suspend fun save(location: Location)
+    suspend fun save(location: Coordinates)
 
-    suspend fun get(): Location
+    suspend fun get(): Coordinates
 
 }

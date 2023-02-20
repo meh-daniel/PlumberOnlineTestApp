@@ -16,7 +16,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -47,6 +46,9 @@ dependencies {
     implementation(Deps.MapKit.full)
     implementation(Deps.Hilt.ANDROID)
     kapt(Deps.Hilt.COMPILER)
+    implementation(Deps.Room.KTX)
+    implementation(Deps.Room.RUNTIME)
+    kapt(Deps.Room.COMPILER)
     implementation(Deps.Lifecycle.VIEW_MODEL)
     implementation(Deps.Lifecycle.LIVE_DATA)
     implementation(Deps.Lifecycle.RUNTIME)

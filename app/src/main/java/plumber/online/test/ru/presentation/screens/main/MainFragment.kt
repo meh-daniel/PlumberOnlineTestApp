@@ -1,14 +1,19 @@
 package plumber.online.test.ru.presentation.screens.main
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
@@ -42,9 +47,11 @@ class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.ma
     }
 
     private fun setupActionFlow() {
-        viewModel.stateFlow.onEach { state ->
+        viewModel.actionFlow.onEach { action ->
             with(binding){
-
+                if(action is MainAction.RouteToMap) {
+                    findNavController().navigate(R.id.action_mainFragment_to_mapFragment)
+                }
             }
         }.observeInLifecycle(viewLifecycleOwner)
     }
@@ -59,5 +66,4 @@ class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.ma
             }
         }
     }
-
 }

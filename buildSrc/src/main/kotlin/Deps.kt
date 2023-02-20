@@ -12,6 +12,13 @@ object Deps {
         const val RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
     }
 
+    object Room {
+        private const val room = "2.3.0"
+        const val KTX = "androidx.room:room-ktx:${room}"
+        const val RUNTIME = "androidx.room:room-runtime:${room}"
+        const val COMPILER = "androidx.room:room-compiler:${room}"
+    }
+
     object Navigation {
         private const val navigation = "2.5.0"
         const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${navigation}"

@@ -27,3 +27,9 @@ test: https://docs.google.com/document/d/1b3uUWd_MGr6fL1g-zGRxMGZAt3bM3m_kiynGCu
 * Di
     * ComponentModule
 * App
+
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604"  src="https://github.com/meh-daniel/PlumberOnlineTestApp/blob/master/screenshots/1.jpg"> |  <img width="1604" src="https://github.com/meh-daniel/PlumberOnlineTestApp/blob/master/screenshots/2.jpg">|<img width="1604" src="https://github.com/meh-daniel/PlumberOnlineTestApp/blob/master/screenshots/3.jpg">|
+
+В общем как то так:)

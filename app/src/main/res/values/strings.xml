@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PlumberOnlineTestApp</string>
+    <string name="ShowOnMap">Показать на карте</string>
 </resources>

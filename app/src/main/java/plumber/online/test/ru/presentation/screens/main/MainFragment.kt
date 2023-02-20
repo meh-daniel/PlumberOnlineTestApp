@@ -3,12 +3,14 @@ package plumber.online.test.ru.presentation.screens.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import plumber.online.test.ru.R
 import plumber.online.test.ru.databinding.MainFragmentBinding
 import plumber.online.test.ru.presentation.base.BaseFragment
 import plumber.online.test.ru.presentation.utils.observeInLifecycle
 
+@AndroidEntryPoint
 class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.main_fragment) {
 
     override val viewModel: MainViewModel by viewModels()

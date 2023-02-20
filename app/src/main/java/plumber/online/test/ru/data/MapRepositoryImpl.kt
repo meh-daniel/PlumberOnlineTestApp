@@ -9,11 +9,11 @@ class MapRepositoryImpl(
 ): MapRepository {
 
     override suspend fun save(location: Location) {
-        TODO("Not yet implemented")
+        dataBase.mapDao().updateCurrentLocation(location.toSW())
     }
 
     override suspend fun get(): Location {
-        TODO("Not yet implemented")
+        return dataBase.mapDao().getCurrentLocation().toDomain()
     }
 
 }

@@ -11,7 +11,7 @@ data class LocationSW(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long = 0,
-    val address: Int,
+    val address: String,
     val lat: Double,
     val lon: Double,
 ) {

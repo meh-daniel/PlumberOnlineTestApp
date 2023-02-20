@@ -69,13 +69,13 @@
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/user_location_fab"
-        app:layout_constraintEnd_toStartOf="@+id/user_location_fab"
-        app:layout_constraintTop_toTopOf="@+id/user_location_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/sendUserCoordinatesBtn"
+        app:layout_constraintEnd_toStartOf="@+id/sendUserCoordinatesBtn"
+        app:layout_constraintTop_toTopOf="@+id/sendUserCoordinatesBtn" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/user_location_fab"
+        android:id="@+id/sendUserCoordinatesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

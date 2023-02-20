@@ -1,20 +1,12 @@
 package plumber.online.test.ru.presentation.screens.main
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import plumber.online.test.ru.R
@@ -38,10 +30,24 @@ class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.ma
         setupActionFlow()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.load()
+    }
+
+    override fun initialize() {
+        super.initialize()
+        viewModel.load()
+    }
+
     private fun setupStateFlow() {
         viewModel.stateFlow.onEach { state ->
             with(binding){
-                infoLocationTxt.text = if(state is MainState.Loaded) state.data else ""
+                infoLocationTxt.text = when(state) {
+                    is MainState.Loaded -> state.data
+                    is MainState.Nothing -> state.data
+                    else -> ""
+                }
             }
         }.observeInLifecycle(viewLifecycleOwner)
     }
@@ -52,6 +58,16 @@ class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.ma
                 if(action is MainAction.RouteToMap) {
                     findNavController().navigate(R.id.action_mainFragment_to_mapFragment)
                 }
+                if(action is MainAction.ShowError) {
+                    context?.let {
+                        AlertDialog
+                            .Builder(it)
+                            .setTitle("Error")
+                            .setMessage(action.message)
+                            .setNegativeButton("Ok") { _, _ -> }
+                            .show()
+                    }
+                }
             }
         }.observeInLifecycle(viewLifecycleOwner)
     }
@@ -60,9 +76,9 @@ class MainFragment: BaseFragment<MainViewModel, MainFragmentBinding>(R.layout.ma
     override fun setupListeners() {
         binding.showOnMapBtn.setOnClickListener {
             if (Utils.isNetworkAvailable(this@MainFragment.requireContext())) {
-                viewModel.sendAction(MainAction.RouteToMap)
+                viewModel.routeToMapScreen()
             } else {
-                viewModel.sendAction(MainAction.ShowError("Отсутствие интернета"))
+                viewModel.sendAction(MainAction.ShowError("Отсутствует интернет"))
             }
         }
     }

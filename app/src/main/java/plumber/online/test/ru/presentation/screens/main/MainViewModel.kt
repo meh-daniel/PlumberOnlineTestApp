@@ -1,5 +1,6 @@
 package plumber.online.test.ru.presentation.screens.main
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import plumber.online.test.ru.domain.MapRepository
 import plumber.online.test.ru.presentation.base.BaseViewModel
-import plumber.online.test.ru.presentation.utils.Utils
 import java.net.ConnectException
 import javax.inject.Inject
 
@@ -29,23 +29,25 @@ class MainViewModel @Inject constructor(
         load()
     }
 
-    private fun load() {
+    fun load() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                repository.get()
+                val data = repository.get()
+                Log.d("xxx123", "${data}")
+                setState(MainState.Loaded("Address ${data.lat} ${data.lon}"))
             } catch (e: Throwable) {
                 when (e) {
-                    is NullPointerException -> setState(MainState.Loaded("Точка не задана"))
-                    is ConnectException -> setState(MainState.Error("отсутствует интернет"))
-                    else -> setState(MainState.Error(e.message.toString()))
+                    is NullPointerException -> setState(MainState.Nothing("Точка не задана"))
+                    is ConnectException -> sendAction(MainAction.ShowError("отсутствует интернет"))
+                    else -> sendAction(MainAction.ShowError(e.message.toString()))
                 }
             }
         }
     }
 
-    fun goToMap() {
+    fun routeToMapScreen() {
         viewModelScope.launch(Dispatchers.IO) {
-
+            sendAction(MainAction.RouteToMap)
         }
     }
 

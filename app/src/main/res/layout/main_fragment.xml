@@ -11,15 +11,15 @@
         android:id="@+id/infoLocationTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/showOnMapBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Кто я?" />
 
     <com.google.android.material.button.MaterialButton
@@ -27,8 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ShowOnMap"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/infoLocationTxt"
         app:layout_constraintStart_toStartOf="@+id/infoLocationTxt"
-        app:layout_constraintTop_toBottomOf="@+id/infoLocationTxt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
